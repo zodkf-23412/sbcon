@@ -6,6 +6,10 @@ on:
   workflow_dispatch:
     branches:
 
+  push:
+    branches:
+      - main
+
 jobs:
   build:
 
@@ -16,7 +20,7 @@ jobs:
       fail-fast: false
       max-parallel: 6
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v4
@@ -59,6 +63,10 @@ jobs:
     - name: Run pytest examples/test_window_switching.py --browser=chrome --headless
       run: |
         pytest examples/test_window_switching.py --browser=chrome --headless -v -s --junit-xml=junit/test-results.xml
+
+    - name: Use CDP mode 
+      run: |
+        python cdp_mode.py
     - name: Verify seleniumbase install from PyPI
       run: |
         pip install seleniumbase -U --no-deps --force-reinstall --no-cache-dir
