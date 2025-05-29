@@ -5,6 +5,8 @@ with SB(uc=True, test=True, ad_block=True) as sb:
     sb.activate_cdp_mode(url)
     sb.sleep(2)
     sb.uc_gui_click_captcha()
+    page_source = sb.cdp.get_page_source()
+    print("page_source:", page_source)
     sb.highlight('[data-test="global-nav-glassdoor-logo"]')
     sb.highlight('[data-test="site-header-companies"]')
     sb.highlight('[data-test="search-button"]')
