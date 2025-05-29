@@ -67,6 +67,7 @@ jobs:
 
     - name: Use CDP mode 
       run: |
+        python -m pip install pyautogui
         python cdp_mode.py
     - name: Verify seleniumbase install from PyPI
       run: |
